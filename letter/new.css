@@ -48,18 +48,17 @@ body {
   line-height: 1.15;
   max-width: 90%;
   word-wrap: break-word;
-  opacity: 0; /* default hidden until animated */
-  /* responsive font sizing: small -> medium -> large */
+  opacity: 0; 
   font-size: clamp(1rem, 2.5vw + 0.5rem, 3.2rem);
   position: absolute;
   left: var(--gutter);
   right: var(--gutter);
-  animation-fill-mode: both; /* stay in final computed state while animating */
+  animation-fill-mode: both; 
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
 }
 
-/* FIRST - top appear from above */
+/* FIRST - top fade */
 .first-text {
   top: 1.5rem;
   font-size: clamp(1.25rem, 3.2vw + 0.5rem, 4.4rem);
@@ -69,7 +68,7 @@ body {
   animation-delay: 0s;
 }
 
-/* SECOND - slide in from right */
+/* SECOND - right slide in */
 .second-text {
   top: 4.5rem;
   left: auto;
@@ -79,10 +78,10 @@ body {
   color: var(--muted);
   animation-name: rightFadeInOut;
   animation-duration: 6s;
-  animation-delay: 2.5s;
+  animation-delay: 5s;
 }
 
-/* THIRD - rotated vertical text, centered better */
+/* THIRD - rotated centered text */
 .third-text {
   font-size: clamp(0.9rem, 1.8vw + 0.4rem, 2rem);
   color: var(--accent1);
@@ -93,10 +92,10 @@ body {
   white-space: nowrap;
   animation-name: topFadeInOut;
   animation-duration: 6s;
-  animation-delay: 6.5s;
+  animation-delay: 11s;
 }
 
-/* FOURTH - fade in/out */
+/* FOURTH - simple fade */
 .fourth-text {
   top: 6.5rem;
   left: 10%;
@@ -104,45 +103,55 @@ body {
   color: var(--accent2);
   animation-name: fadeInOut;
   animation-duration: 8s;
-  animation-delay: 8s;
+  animation-delay: 17s;
 }
 
-/* Bottom-slide group (consolidated) */
+/* ------------------------------------------ */
+/*      5TH → 13TH FIXED SLOW FADE-UP STYLE   */
+/* ------------------------------------------ */
+
+/* slow fade-up animation */
+@keyframes slowFadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  15% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-30px); }
+}
+
+/* Base style for bottom texts */
 .slide-bottom {
+  animation-name: slowFadeUp;
+  animation-duration: 8s; 
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+  position: absolute;
+  bottom: 25%;
   left: 5%;
-  font-size: clamp(0.95rem, 2.8vw + 0.5rem, 2.8rem); /* reduced from 5rem to scale */
+  opacity: 0;
+  font-size: clamp(1rem, 2.8vw + 0.5rem, 2.8rem);
   color: var(--accent3);
-  bottom: 12%;
-  animation-name: bottomFadeInOut;
-  animation-duration: 6.5s;
-  /* we'll set per-element delays below (incremental) */
 }
 
-/* incremental delays for readable sequence (adjust numbers to taste) */
-.fifth-text  { animation-delay: 10s; }
-.sixth-text  { animation-delay: 11.2s; }
-.seventh-text{ animation-delay: 12.4s; }
-.eighth-text { animation-delay: 13.6s; }
-.ninth-text  { animation-delay: 14.8s; }
-.tenth-text  { animation-delay: 16.0s; }
-.eleventh-text{ animation-delay: 17.2s; }
-.twelth-text { animation-delay: 18.4s; }
-.thirteenth-text{ animation-delay: 19.6s; }
+/* Sequential appearance, 8 seconds apart */
+.fifth-text        { animation-delay: 25s; }
+.sixth-text        { animation-delay: 33s; }
+.seventh-text      { animation-delay: 41s; }
+.eighth-text       { animation-delay: 49s; }
+.ninth-text        { animation-delay: 57s; }
+.tenth-text        { animation-delay: 65s; }
+.eleventh-text     { animation-delay: 73s; }
+.twelth-text       { animation-delay: 81s; }
+.thirteenth-text   { animation-delay: 89s; }
 
-/* KEYFRAMES */
+/* ------------------------------------------ */
+/* KEYFRAMES FOR OTHER TEXTS                  */
+/* ------------------------------------------ */
 
 @keyframes topFadeInOut {
   0% { transform: translateY(-3rem); opacity: 0; }
   15% { transform: translateY(0); opacity: 1; }
   75% { transform: translateY(0); opacity: 1; }
   100% { opacity: 0; transform: translateY(-1rem); }
-}
-
-@keyframes bottomFadeInOut {
-  0% { transform: translateY(4rem); opacity: 0; }
-  15% { transform: translateY(0); opacity: 1; }
-  75% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(2rem); opacity: 0; }
 }
 
 @keyframes rightFadeInOut {
@@ -159,9 +168,15 @@ body {
   100% { opacity: 0; transform: scale(0.99); }
 }
 
-/* responsive: ensure container height reduces on narrow screens */
+/* Mobile Fallback (simple stacked text) */
 @media (max-width: 600px) {
   .animation-box { height: auto; padding: 1.25rem; }
-  .animation-container p { position: relative; left: 0; right: 0; bottom: auto; top: auto; transform: none; opacity: 1; animation: none; margin-bottom: 0.75rem; }
-  /* On tiny screens we simply show messages stacked (no animation) to improve UX */
+  .animation-container p { 
+    position: relative; 
+    left: 0; right: 0; bottom: auto; top: auto; 
+    transform: none; 
+    opacity: 1; 
+    animation: none; 
+    margin-bottom: 0.75rem; 
+  }
 }
