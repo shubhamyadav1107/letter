@@ -135,4 +135,15 @@ body {
   background-color: red;
   right: -40px;
   border-radius: 50px;
+
+}
+
+.front, .top {
+  pointer-events: none;
+}
+
+.text a {
+  position: relative;
+  z-index: 9999;
+  pointer-events: auto;
 }
