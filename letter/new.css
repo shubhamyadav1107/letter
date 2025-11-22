@@ -77,8 +77,8 @@ body {
   font-size: clamp(1rem, 2.8vw + 0.5rem, 3.4rem);
   color: var(--muted);
   animation-name: rightFadeInOut;
-  animation-duration: 3s;
-  animation-delay: 1s;
+  animation-duration: 5s;
+  animation-delay: 4s;
 }
 
 /* THIRD - rotated centered text */
@@ -91,8 +91,8 @@ body {
   transform: translate(-50%, -50%) rotate(-90deg);
   white-space: nowrap;
   animation-name: topFadeInOut;
-  animation-duration: 3s;
-  animation-delay: 1s;
+  animation-duration: 5s;
+  animation-delay: 4s;
 }
 
 /* FOURTH - simple fade */
@@ -103,7 +103,7 @@ body {
   color: var(--accent2);
   animation-name: fadeInOut;
   animation-duration: 5s;
-  animation-delay: 2s;
+  animation-delay: 4s;
 }
 
 /* ------------------------------------------ */
@@ -180,4 +180,5 @@ body {
     margin-bottom: 0.75rem; 
   }
 }
+
 
